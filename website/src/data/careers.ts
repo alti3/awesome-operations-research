@@ -87,8 +87,7 @@ export const careers: Career[] = [
   {
     id: "transportation-planner",
     title: "Transportation Planner / Logistics Scientist",
-    summary:
-      "Optimizes routing, mobility, fleet operations, network design, and transport policy.",
+    summary: "Optimizes routing, mobility, fleet operations, network design, and transport policy.",
     methods: ["Network optimization", "Vehicle routing", "Simulation", "Demand modeling"],
     tools: ["Python", "GIS", "OR-Tools", "Traffic simulation tools"],
     path: "Supply Chain & Logistics Path → Healthcare, Energy & Public Systems Path",
