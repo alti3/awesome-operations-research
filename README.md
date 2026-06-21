@@ -14,6 +14,7 @@ Image credit: [Alex Elkjær Vasegaard](https://towardsdatascience.com/why-operat
 - [What is Operations Research?](#what-is-operations-research)
 - [Why Operations Research is Important](#why-operations-research-is-important)
 - [Core Areas of Operations Research](#core-areas-of-operations-research)
+- [Detailed Topic Areas](#detailed-topic-areas)
 - [Mathematical Optimization](#mathematical-optimization)
 - [Linear Programming](#linear-programming)
 - [Integer and Mixed-Integer Programming](#integer-and-mixed-integer-programming)
@@ -34,6 +35,9 @@ Image credit: [Alex Elkjær Vasegaard](https://towardsdatascience.com/why-operat
 - [Analytics, Data Science, and Machine Learning Connections](#analytics-data-science-and-machine-learning-connections)
 - [Applications of Operations Research in Industry](#applications-of-operations-research-in-industry)
 - [Learning Roadmaps](#learning-roadmaps)
+- [Supply Chain and Logistics Path](#supply-chain-and-logistics-path)
+- [Healthcare, Energy, and Public Systems Path](#healthcare-energy-and-public-systems-path)
+- [Modern Decision Systems Path](#modern-decision-systems-path)
 - [Recommended Books](#recommended-books)
 - [Courses and Lecture Notes](#courses-and-lecture-notes)
 - [Software Tools and Solvers](#software-tools-and-solvers)
@@ -94,6 +98,17 @@ OR is interdisciplinary by design. It draws from applied mathematics, statistics
 - **Inventory and supply chains**: manage stock, production, distribution, and service levels.
 - **Revenue management**: choose prices, availability, and capacity controls under demand uncertainty.
 - **Analytics and machine learning integration**: combine prediction, optimization, experimentation, and decision systems.
+
+## Detailed Topic Areas
+
+Beyond the core areas above, OR includes a wider set of modeling foundations, methods, applications, and practice topics:
+
+- **Modeling foundations**: modeling decisions; objectives, constraints, and uncertainty; probability and statistics for OR; model validation and sensitivity; multi-objective optimization; data envelopment analysis.
+- **Advanced optimization**: conic and semidefinite optimization; stochastic programming; robust optimization; decomposition methods; constraint programming; heuristics and metaheuristics; global optimization and MINLP; combinatorial optimization; least squares, quadratic programming, and piecewise-linear models; polyhedral theory and cutting planes; complementarity and equilibrium models.
+- **Stochastic systems**: Markov decision processes; reliability and maintenance; risk analysis; simulation optimization.
+- **Networks and systems**: matching and assignment; vehicle routing; facility location; project management, PERT, and CPM; optimal control; system dynamics and feedback models.
+- **Applications**: production planning and manufacturing; service operations and staffing; healthcare OR; energy and power systems; finance, portfolio, and risk; public-sector and policy OR; telecom, cloud, and computing systems; sports and entertainment scheduling; agriculture and natural resources.
+- **Modern practice**: prescriptive analytics; data-driven optimization; digital twins and what-if systems; solver engineering and deployment; responsible OR and decision governance; OR communication and change; behavioral OR and human decisions.
 
 ## Mathematical Optimization
 
@@ -480,6 +495,38 @@ Useful resources:
 4. Read papers from INFORMS, MOS, IPCO, SODA, and applied domain journals.
 5. Reproduce computational experiments on benchmark instances.
 6. Develop new theory, algorithms, models, or domain-specific decision systems.
+
+### Supply Chain and Logistics Path
+
+1. Inventory theory: EOQ, newsvendor, reorder policies, safety stock, and multi-echelon inventory.
+2. Transportation and assignment models.
+3. Network flows, routing, and facility location.
+4. Vehicle routing with capacity, time windows, pickup-delivery, and last-mile constraints.
+5. Scheduling for production, crews, warehouses, and transportation assets.
+6. Supply chain optimization: network design, sourcing, S&OP, resilience, and sustainability.
+7. Production planning, lot sizing, capacity planning, and manufacturing flow.
+8. Revenue management for pricing, availability, and capacity controls.
+
+### Healthcare, Energy, and Public Systems Path
+
+1. Frame stakeholder goals, constraints, uncertainty, equity, and policy requirements.
+2. Queueing theory for capacity, congestion, access, utilization, and service levels.
+3. Scheduling and project management for operating rooms, crews, maintenance windows, and critical paths.
+4. Healthcare OR for patient flow, beds, clinics, treatment planning, triage, and public health.
+5. Energy and power systems: unit commitment, dispatch, storage, renewables, markets, and resilience.
+6. Public-sector and policy OR: coverage, resource allocation, transparency, and robustness.
+7. Risk analysis with stress tests, tail risk, scenario planning, and mitigation.
+
+### Modern Decision Systems Path
+
+1. Software tools and solvers: Pyomo, JuMP, OR-Tools, HiGHS, Gurobi, CPLEX, and modeling APIs.
+2. Model validation and sensitivity: backtesting, scenario analysis, stress testing, and calibration.
+3. Prescriptive analytics: translate predictions and business rules into recommendations.
+4. Simulation optimization for noisy systems.
+5. Digital twins and what-if systems connected to operational data.
+6. Solver engineering and deployment: APIs, warm starts, monitoring, infeasibility handling, and fallbacks.
+7. Responsible OR and decision governance: fairness, explainability, auditability, and human override.
+8. Behavioral OR and human decision-making: trust, incentives, bias, adoption, and human-in-the-loop decisions.
 
 ## Recommended Books
 
