@@ -1,24 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Search, X, ExternalLink } from "lucide-react";
+import { Search, X } from "lucide-react";
 import {
   difficulties,
   regions,
   topicTypes,
   topics,
   type Difficulty,
-  type Topic,
   type TopicType,
 } from "@/data/topics";
 import { TopicCard } from "@/components/site/TopicCard";
-import { DifficultyBadge, Tag, TypeBadge } from "@/components/site/Badges";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/map")({
   head: () => ({
@@ -43,7 +34,6 @@ function MapPage() {
   const [region, setRegion] = useState<string | "all">("all");
   const [diff, setDiff] = useState<Difficulty | "all">("all");
   const [type, setType] = useState<TopicType | "all">("all");
-  const [active, setActive] = useState<Topic | null>(null);
 
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();
@@ -85,7 +75,8 @@ function MapPage() {
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
             Search across topics, filter by region, difficulty, or type. Click any card to open a
-            detailed view with key concepts, applications, and curated resources.
+            dedicated guide page with key concepts, applications, a table of contents, and curated
+            resources.
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-[1fr_auto_auto_auto]">
@@ -188,7 +179,7 @@ function MapPage() {
                   </header>
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {g.items.map((t) => (
-                      <TopicCard key={t.id} topic={t} onOpen={setActive} />
+                      <TopicCard key={t.id} topic={t} />
                     ))}
                   </div>
                 </section>
@@ -196,102 +187,6 @@ function MapPage() {
           </div>
         )}
       </div>
-
-      <Dialog open={!!active} onOpenChange={(o) => !o && setActive(null)}>
-        <DialogContent className="max-w-2xl">
-          {active && (
-            <>
-              <DialogHeader>
-                <div className="flex items-center gap-2">
-                  <TypeBadge value={active.type} />
-                  <DifficultyBadge value={active.difficulty} />
-                  <span className="mono text-[11px] text-muted-foreground">
-                    {active.regionIndex}.{active.topicIndex}
-                  </span>
-                </div>
-                <DialogTitle className="mt-2 text-xl">{active.title}</DialogTitle>
-                <DialogDescription>{active.short}</DialogDescription>
-              </DialogHeader>
-
-              <div className="space-y-5">
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {active.description}
-                </p>
-
-                <div>
-                  <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    Key concepts
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {active.concepts.map((c) => (
-                      <Tag key={c}>{c}</Tag>
-                    ))}
-                  </div>
-                </div>
-
-                {active.applications && active.applications.length > 0 && (
-                  <div>
-                    <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Common applications
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {active.applications.map((a) => (
-                        <Tag key={a}>{a}</Tag>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {active.resources.length > 0 && (
-                  <div>
-                    <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Useful resources
-                    </div>
-                    <ul className="space-y-1.5">
-                      {active.resources.map((r) => (
-                        <li key={r.url}>
-                          <a
-                            href={r.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="group inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
-                          >
-                            {r.title}
-                            <ExternalLink className="h-3.5 w-3.5 opacity-70" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {active.next && active.next.length > 0 && (
-                  <div>
-                    <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Suggested next
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {active.next.map((id) => {
-                        const t = topics.find((x) => x.id === id);
-                        if (!t) return null;
-                        return (
-                          <button
-                            key={id}
-                            onClick={() => setActive(t)}
-                            className="rounded-md border border-border bg-secondary/50 px-2 py-1 text-xs hover:border-primary hover:text-primary"
-                          >
-                            → {t.title}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

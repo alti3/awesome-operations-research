@@ -16,17 +16,23 @@ Image credit: [Alex Elkjær Vasegaard](https://towardsdatascience.com/why-operat
 - [Core Areas of Operations Research](#core-areas-of-operations-research)
 - [Detailed Topic Areas](#detailed-topic-areas)
 - [Mathematical Optimization](#mathematical-optimization)
+- [Forecasting for OR](#forecasting-for-or)
+- [Spreadsheet and Algebraic Modeling](#spreadsheet-and-algebraic-modeling)
 - [Linear Programming](#linear-programming)
 - [Integer and Mixed-Integer Programming](#integer-and-mixed-integer-programming)
+- [Goal Programming](#goal-programming)
+- [Postoptimal and Parametric Analysis](#postoptimal-and-parametric-analysis)
 - [Nonlinear Optimization](#nonlinear-optimization)
 - [Convex Optimization](#convex-optimization)
 - [Dynamic Programming](#dynamic-programming)
 - [Stochastic Processes](#stochastic-processes)
+- [Markov Chains](#markov-chains)
 - [Queueing Theory](#queueing-theory)
 - [Simulation](#simulation)
 - [Decision Analysis](#decision-analysis)
 - [Game Theory](#game-theory)
 - [Network Optimization](#network-optimization)
+- [Traveling Salesperson Problem](#traveling-salesperson-problem)
 - [Scheduling](#scheduling)
 - [Inventory Theory](#inventory-theory)
 - [Transportation and Logistics](#transportation-and-logistics)
@@ -103,10 +109,10 @@ OR is interdisciplinary by design. It draws from applied mathematics, statistics
 
 Beyond the core areas above, OR includes a wider set of modeling foundations, methods, applications, and practice topics:
 
-- **Modeling foundations**: modeling decisions; objectives, constraints, and uncertainty; probability and statistics for OR; model validation and sensitivity; multi-objective optimization; data envelopment analysis.
-- **Advanced optimization**: conic and semidefinite optimization; stochastic programming; robust optimization; decomposition methods; constraint programming; heuristics and metaheuristics; global optimization and MINLP; combinatorial optimization; least squares, quadratic programming, and piecewise-linear models; polyhedral theory and cutting planes; complementarity and equilibrium models.
-- **Stochastic systems**: Markov decision processes; reliability and maintenance; risk analysis; simulation optimization.
-- **Networks and systems**: matching and assignment; vehicle routing; facility location; project management, PERT, and CPM; optimal control; system dynamics and feedback models.
+- **Modeling foundations**: modeling decisions; objectives, constraints, and uncertainty; spreadsheet and algebraic modeling; forecasting for OR; probability and statistics for OR; model validation and sensitivity; multi-objective optimization; data envelopment analysis.
+- **Advanced optimization**: goal programming; postoptimal and parametric analysis; conic and semidefinite optimization; stochastic programming; robust optimization; decomposition methods; constraint programming; heuristics and metaheuristics; global optimization and MINLP; combinatorial optimization; least squares, quadratic programming, and piecewise-linear models; polyhedral theory and cutting planes; complementarity and equilibrium models.
+- **Stochastic systems**: Markov chains; Markov decision processes; reliability and maintenance; risk analysis; simulation optimization.
+- **Networks and systems**: matching and assignment; traveling salesperson problem; vehicle routing; facility location; project management, PERT, and CPM; optimal control; system dynamics and feedback models.
 - **Applications**: production planning and manufacturing; service operations and staffing; healthcare OR; energy and power systems; finance, portfolio, and risk; public-sector and policy OR; telecom, cloud, and computing systems; sports and entertainment scheduling; agriculture and natural resources.
 - **Modern practice**: prescriptive analytics; data-driven optimization; digital twins and what-if systems; solver engineering and deployment; responsible OR and decision governance; OR communication and change; behavioral OR and human decisions.
 
@@ -123,6 +129,38 @@ Mathematical optimization is the central modeling language of OR. It represents 
 - **Heuristics and metaheuristics**: find good solutions when exact methods are too slow or unnecessary.
 - **Robust optimization**: choose decisions that remain effective across uncertain parameter ranges.
 - **Stochastic optimization**: optimize decisions with explicitly modeled uncertainty.
+
+## Forecasting for OR
+
+Forecasting turns historical data, explanatory variables, and domain judgment into inputs for OR models. Textbooks often connect forecasting to inventory, staffing, capacity planning, simulation, and revenue management because predictive errors directly affect prescriptive decisions.
+
+- **Time series models**: capture trend, seasonality, cycles, and autocorrelation.
+- **Causal and explanatory models**: relate demand, arrivals, prices, or failures to drivers such as promotions, weather, policy, or calendar effects.
+- **Forecast error**: feeds safety stock, staffing buffers, service levels, and scenario design.
+- **Scenario generation**: converts uncertain forecasts into inputs for stochastic programming, robust optimization, and simulation.
+- **Decision-focused evaluation**: judges forecasts by downstream policy quality, not only statistical accuracy.
+
+Useful resources:
+
+- [Forecasting: Principles and Practice](https://otexts.com/fpp3/) by Rob J. Hyndman and George Athanasopoulos
+- [MIT 15.071 The Analytics Edge](https://ocw.mit.edu/courses/15-071-the-analytics-edge-spring-2017/)
+- [R forecast package](https://pkg.robjhyndman.com/forecast/)
+
+## Spreadsheet and Algebraic Modeling
+
+Many OR textbooks teach spreadsheet models and algebraic formulations side by side. Spreadsheets are useful for transparent prototypes and stakeholder review; algebraic modeling languages are better for indexed models, reproducibility, automation, and deployment.
+
+- **Spreadsheet models**: organize inputs, decisions, formulas, constraints, and outputs in an auditable layout.
+- **Algebraic notation**: defines sets, indices, parameters, variables, constraints, and objectives.
+- **Solver add-ins**: connect spreadsheet formulas to LP, nonlinear, and integer solvers.
+- **Model auditing**: checks units, formulas, hidden constants, feasibility, and data assumptions.
+- **Migration path**: move from spreadsheet prototype to Pyomo, JuMP, AMPL, GAMS, MiniZinc, or production APIs when scale and maintainability matter.
+
+Useful resources:
+
+- [OpenSolver](https://opensolver.org/)
+- [Pyomo](https://www.pyomo.org/)
+- [JuMP](https://jump.dev/JuMP.jl/stable/)
 
 ## Linear Programming
 
@@ -158,6 +196,37 @@ Useful resources:
 - [Integer Programming](https://optimization.cbe.cornell.edu/index.php?title=Integer_programming) from the Cornell Optimization Wiki
 - [SCIP Book](https://scipbook.readthedocs.io/)
 - [MIPLIB](https://miplib.zib.de/)
+
+## Goal Programming
+
+Goal programming extends linear programming for decisions with several aspiration levels. Instead of optimizing one natural objective, it introduces deviation variables and minimizes unwanted shortfalls or excesses from targets.
+
+- **Aspiration levels**: target values for cost, service, risk, staffing, output, equity, or other goals.
+- **Deviation variables**: measure underachievement or overachievement relative to each target.
+- **Weighted goal programming**: combines deviations in a single weighted objective.
+- **Preemptive goal programming**: satisfies higher-priority goals before lower-priority goals.
+- **Soft constraints**: allow controlled violations with penalties rather than declaring the model infeasible.
+
+Useful resources:
+
+- [NEOS Guide: Multiobjective Optimization](https://neos-guide.org/guide/types/multiobjective/)
+- [MIT 15.053 Optimization Methods in Management Science](https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/)
+
+## Postoptimal and Parametric Analysis
+
+Postoptimal and parametric analysis studies what happens after an optimization model has been solved. It is central to textbook LP because managers usually ask how stable a recommendation is and which resources, costs, or requirements matter most.
+
+- **Sensitivity ranges**: show where current solution interpretations remain valid.
+- **Shadow prices**: estimate marginal value for binding resources within valid ranges.
+- **Reduced costs**: explain when inactive activities become attractive.
+- **Parametric right-hand-side analysis**: studies changing capacities, demands, or requirements.
+- **Parametric objective analysis**: studies changing costs, revenues, or priorities.
+- **Reoptimization**: uses previous solutions when model data changes.
+
+Useful resources:
+
+- [Linear Programming FAQ](https://neos-guide.org/guide/types/linear-programming/)
+- [MIT 15.053 Optimization Methods in Management Science](https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/)
 
 ## Nonlinear Optimization
 
@@ -232,6 +301,21 @@ Useful resources:
 - [Introduction to Probability Models](https://www.elsevier.com/books/introduction-to-probability-models/ross/978-0-12-814346-9) by Sheldon M. Ross
 - [MIT 6.262 Discrete Stochastic Processes](https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/)
 - [ProbabilityCourse.com](https://www.probabilitycourse.com/)
+
+## Markov Chains
+
+Markov chains model random movement among states when the next state depends on the current state. They are a classical OR textbook topic and provide the foundation for reliability models, queues, inventory models, and Markov decision processes.
+
+- **Transition matrix**: probabilities of moving from each state to each next state.
+- **State classification**: recurrent, transient, absorbing, periodic, and communicating states.
+- **Steady-state probabilities**: long-run state occupancy when a limiting distribution is meaningful.
+- **Absorbing chains**: model endpoints such as failure, churn, completion, or default.
+- **First-passage analysis**: estimates time or probability of reaching a target state.
+
+Useful resources:
+
+- [MIT 6.262 Discrete Stochastic Processes](https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/)
+- [ProbabilityCourse.com: Markov Chains](https://www.probabilitycourse.com/chapter11/11_2_1_introduction.php)
 
 ## Queueing Theory
 
@@ -323,6 +407,23 @@ Useful resources:
 
 - [Network Flows](https://www.pearson.com/en-us/subject-catalog/p/network-flows-theory-algorithms-and-applications/P200000003207/9780136175490) by Ahuja, Magnanti, and Orlin
 - [Network Optimization](https://www.athenasc.com/netbook.html) by Dimitri P. Bertsekas
+- [Google OR-Tools Routing](https://developers.google.com/optimization/routing)
+
+## Traveling Salesperson Problem
+
+The traveling salesperson problem (TSP) asks for a minimum-cost tour that visits each location once and returns to the start. It is one of the canonical examples in OR textbooks because it connects routing, integer programming, combinatorial optimization, cutting planes, heuristics, and benchmark-driven algorithm design.
+
+- **Hamiltonian tours**: visit each node exactly once and return to the origin.
+- **Subtour elimination**: prevents disconnected cycles from appearing in integer programming formulations.
+- **Branch-and-cut**: combines enumeration with valid inequalities for exact solution.
+- **Local search**: improves tours through 2-opt, 3-opt, swaps, and larger neighborhoods.
+- **Approximation algorithms**: provide performance guarantees for structured variants such as metric TSP.
+- **Extensions**: vehicle routing, time windows, pickup-delivery, multiple depots, and stochastic travel times.
+
+Useful resources:
+
+- [Concorde TSP Solver](https://www.math.uwaterloo.ca/tsp/concorde.html)
+- [TSPLIB](http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/)
 - [Google OR-Tools Routing](https://developers.google.com/optimization/routing)
 
 ## Scheduling
@@ -536,6 +637,7 @@ Useful resources:
 - [Operations Research: Applications and Algorithms](https://www.cengage.com/c/operations-research-applications-and-algorithms-4e-winston/9780534423582/) by Wayne L. Winston: applied OR text with many modeling examples.
 - [Operations Research: An Introduction](https://www.pearson.com/en-us/subject-catalog/p/operations-research-an-introduction/P200000006313) by Hamdy A. Taha: accessible survey of optimization, networks, integer programming, dynamic programming, queues, and simulation.
 - [Operations Research: Models and Methods](https://www.cambridge.org/highereducation/books/operations-research/0D22B770EA1EEB3B99BF1C99D873F0A4) by Paul A. Jensen and Jonathan F. Bard: modeling-oriented OR reference.
+- [Optimization in Operations Research](https://www.pearson.com/en-us/subject-catalog/p/optimization-in-operations-research/P200000003496) by Ronald L. Rardin: rigorous optimization-centered OR text covering modeling, linear, integer, network, nonlinear, and dynamic optimization topics.
 
 ### Optimization
 

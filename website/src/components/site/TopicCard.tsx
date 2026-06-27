@@ -1,12 +1,13 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, BookOpen } from "lucide-react";
 import type { Topic } from "@/data/topics";
 import { DifficultyBadge, Tag, TypeBadge } from "./Badges";
 
-export function TopicCard({ topic, onOpen }: { topic: Topic; onOpen?: (t: Topic) => void }) {
+export function TopicCard({ topic }: { topic: Topic }) {
   return (
-    <button
-      type="button"
-      onClick={() => onOpen?.(topic)}
+    <Link
+      to="/topics/$topicId"
+      params={{ topicId: topic.id }}
       className="atlas-card atlas-card-hover group relative flex h-full w-full flex-col gap-3 p-5 text-left"
     >
       <div className="flex items-center justify-between gap-3">
@@ -34,9 +35,9 @@ export function TopicCard({ topic, onOpen }: { topic: Topic; onOpen?: (t: Topic)
           {topic.resources.length} resource{topic.resources.length === 1 ? "" : "s"}
         </span>
         <span className="inline-flex items-center gap-1 text-primary opacity-0 transition-opacity group-hover:opacity-100">
-          Open <ArrowUpRight className="h-3.5 w-3.5" />
+          Open page <ArrowUpRight className="h-3.5 w-3.5" />
         </span>
       </div>
-    </button>
+    </Link>
   );
 }

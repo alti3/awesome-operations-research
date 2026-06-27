@@ -202,6 +202,54 @@ export const topics: Topic[] = [
       },
     ],
   },
+  {
+    id: "forecasting-for-or",
+    region: "foundations",
+    regionIndex: 1,
+    topicIndex: 9,
+    title: "Forecasting for OR",
+    short: "Turn historical data into decision inputs, not just predictions.",
+    description:
+      "Forecasting estimates demand, arrivals, failures, prices, workloads, and other uncertain inputs that feed inventory, staffing, pricing, capacity, and simulation models.",
+    concepts: ["Time series", "Causal models", "Forecast error", "Scenario generation", "Bias"],
+    applications: ["Inventory", "Staffing", "Revenue management", "Capacity planning", "Energy"],
+    difficulty: "Foundations",
+    type: "Method",
+    resources: [
+      { title: "Forecasting: Principles and Practice", url: "https://otexts.com/fpp3/" },
+      {
+        title: "MIT 15.071 The Analytics Edge",
+        url: "https://ocw.mit.edu/courses/15-071-the-analytics-edge-spring-2017/",
+      },
+    ],
+    next: ["probability-statistics", "stochastic-programming", "inventory-theory"],
+  },
+  {
+    id: "spreadsheet-algebraic-modeling",
+    region: "foundations",
+    regionIndex: 1,
+    topicIndex: 10,
+    title: "Spreadsheet & Algebraic Modeling",
+    short: "Build transparent OR models in spreadsheets and modeling languages.",
+    description:
+      "Classical OR textbooks emphasize spreadsheet models, algebraic notation, and solver-ready formulations because many real projects start as auditable prototypes before becoming production optimization services.",
+    concepts: [
+      "Spreadsheet models",
+      "Algebraic notation",
+      "Solver add-ins",
+      "Model auditing",
+      "Data tables",
+    ],
+    applications: ["Teaching", "Prototyping", "Budgeting", "Planning", "Decision support"],
+    difficulty: "Foundations",
+    type: "Software",
+    resources: [
+      { title: "OpenSolver", url: "https://opensolver.org/" },
+      { title: "Pyomo", url: "https://www.pyomo.org/" },
+      { title: "JuMP", url: "https://jump.dev/JuMP.jl/stable/" },
+    ],
+    next: ["modeling-decisions", "software-solvers", "solver-engineering"],
+  },
 
   // ─── Optimization Core ───────────────────────────────────
   {
@@ -618,6 +666,80 @@ export const topics: Topic[] = [
     ],
     next: ["game-theory", "nonlinear-optimization"],
   },
+  {
+    id: "goal-programming",
+    region: "optimization-core",
+    regionIndex: 2,
+    topicIndex: 18,
+    title: "Goal Programming",
+    short: "Optimize deviations from multiple aspiration levels.",
+    description:
+      "Goal programming extends linear programming for settings where managers specify target levels for several goals and minimize weighted or prioritized deviations from those targets.",
+    concepts: [
+      "Aspiration levels",
+      "Deviation variables",
+      "Preemptive priorities",
+      "Weighted goals",
+      "Soft constraints",
+    ],
+    applications: [
+      "Budgeting",
+      "Workforce planning",
+      "Public policy",
+      "Portfolio design",
+      "Production planning",
+    ],
+    difficulty: "Intermediate",
+    type: "Method",
+    resources: [
+      {
+        title: "NEOS Guide — Multiobjective Optimization",
+        url: "https://neos-guide.org/guide/types/multiobjective/",
+      },
+      {
+        title: "MIT 15.053 Optimization Methods",
+        url: "https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/",
+      },
+    ],
+    next: ["multiobjective-optimization", "linear-programming"],
+  },
+  {
+    id: "postoptimal-parametric-analysis",
+    region: "optimization-core",
+    regionIndex: 2,
+    topicIndex: 19,
+    title: "Postoptimal & Parametric Analysis",
+    short: "Understand how optimal solutions change when inputs move.",
+    description:
+      "Postoptimal and parametric analysis studies sensitivity ranges, right-hand-side changes, objective coefficient changes, and reoptimization so recommendations remain useful after model inputs shift.",
+    concepts: [
+      "Sensitivity ranges",
+      "Shadow prices",
+      "Parametric RHS",
+      "Parametric costs",
+      "Reoptimization",
+    ],
+    applications: [
+      "Capacity planning",
+      "Pricing",
+      "Budget changes",
+      "Scenario review",
+      "Management reports",
+    ],
+    difficulty: "Intermediate",
+    type: "Method",
+    resources: [
+      {
+        title: "Linear Programming FAQ — NEOS Guide",
+        url: "https://neos-guide.org/guide/types/linear-programming/",
+      },
+      {
+        title: "MIT 15.053 Optimization Methods",
+        url: "https://ocw.mit.edu/courses/15-053-optimization-methods-in-management-science-spring-2013/",
+      },
+    ],
+    next: ["linear-programming", "model-validation"],
+  },
 
   // ─── Stochastic Systems ──────────────────────────────────
   {
@@ -672,6 +794,37 @@ export const topics: Topic[] = [
         url: "https://www.wiley.com/en-us/Fundamentals+of+Queueing+Theory%2C+5th+Edition-p-9781118943526",
       },
     ],
+  },
+  {
+    id: "markov-chains",
+    region: "stochastic",
+    regionIndex: 3,
+    topicIndex: 9,
+    title: "Markov Chains",
+    short: "State-to-state stochastic models without decisions.",
+    description:
+      "Markov chains model systems that move randomly among states according to transition probabilities, supporting steady-state analysis, absorption probabilities, reliability, queues, inventory, and ranking models.",
+    concepts: [
+      "Transition matrix",
+      "State classification",
+      "Steady state",
+      "Absorbing states",
+      "First passage",
+    ],
+    applications: ["Reliability", "Customer migration", "Inventory", "Queues", "Web ranking"],
+    difficulty: "Intermediate",
+    type: "Theory",
+    resources: [
+      {
+        title: "MIT 6.262 Discrete Stochastic Processes",
+        url: "https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/",
+      },
+      {
+        title: "ProbabilityCourse.com — Markov Chains",
+        url: "https://www.probabilitycourse.com/chapter11/11_2_1_introduction.php",
+      },
+    ],
+    next: ["stochastic-processes", "markov-decision-processes"],
   },
   {
     id: "simulation",
@@ -921,6 +1074,35 @@ export const topics: Topic[] = [
       },
     ],
     next: ["supply-chain", "public-sector-policy"],
+  },
+  {
+    id: "traveling-salesperson-problem",
+    region: "networks-games",
+    regionIndex: 4,
+    topicIndex: 10,
+    title: "Traveling Salesperson Problem",
+    short: "Find a minimum-cost tour visiting each location once.",
+    description:
+      "The TSP is a canonical routing and combinatorial optimization problem. It motivates exact branch-and-cut, approximation, local search, and heuristics used in routing, sequencing, and logistics.",
+    concepts: [
+      "Hamiltonian tours",
+      "Subtour elimination",
+      "Branch-and-cut",
+      "Local search",
+      "Approximation",
+    ],
+    applications: ["Routing", "Sequencing", "Circuit layout", "Warehousing", "Tour planning"],
+    difficulty: "Intermediate",
+    type: "Method",
+    resources: [
+      { title: "Concorde TSP Solver", url: "https://www.math.uwaterloo.ca/tsp/concorde.html" },
+      { title: "TSPLIB", url: "http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/" },
+      {
+        title: "Google OR-Tools Routing",
+        url: "https://developers.google.com/optimization/routing",
+      },
+    ],
+    next: ["vehicle-routing", "combinatorial-optimization", "metaheuristics"],
   },
   {
     id: "project-management",

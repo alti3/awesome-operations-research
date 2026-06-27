@@ -75,6 +75,15 @@ export const resources: Resource[] = [
     level: "Intermediate",
   },
   {
+    title: "Optimization in Operations Research",
+    url: "https://www.pearson.com/en-us/subject-catalog/p/optimization-in-operations-research/P200000003496",
+    category: "Recommended Books",
+    type: "Book",
+    description:
+      "Ronald Rardin. Optimization-centered OR text with modeling, LP, IP, networks, NLP, and DP.",
+    level: "Intermediate",
+  },
+  {
     title: "Convex Optimization",
     url: "https://web.stanford.edu/~boyd/cvxbook/",
     category: "Recommended Books",
@@ -211,6 +220,16 @@ export const resources: Resource[] = [
     description: "Williamson & Shmoys. Open book on approximation algorithms.",
     level: "Advanced",
   },
+  {
+    title: "Forecasting: Principles and Practice",
+    url: "https://otexts.com/fpp3/",
+    category: "Recommended Books",
+    type: "Book",
+    description:
+      "Hyndman & Athanasopoulos. Open text on forecasting methods and forecast evaluation.",
+    level: "Beginner",
+    tags: ["forecasting", "analytics"],
+  },
 
   // Courses
   {
@@ -342,6 +361,14 @@ export const resources: Resource[] = [
     type: "Tool",
     description: "Optimization toolkit: CP-SAT, routing, LP/MIP.",
     tags: ["CP-SAT", "VRP"],
+  },
+  {
+    title: "OpenSolver",
+    url: "https://opensolver.org/",
+    category: "Modeling Languages",
+    type: "Tool",
+    description: "Open-source spreadsheet optimization add-in for Excel.",
+    tags: ["spreadsheet", "LP", "MIP"],
   },
   {
     title: "SciPy Optimize",
@@ -761,6 +788,15 @@ export const resources: Resource[] = [
     category: "Datasets & Benchmarks",
     type: "Dataset",
     description: "TSP and related routing instances.",
+  },
+  {
+    title: "Concorde TSP Solver",
+    url: "https://www.math.uwaterloo.ca/tsp/concorde.html",
+    category: "Open-Source Solvers",
+    type: "Solver",
+    description:
+      "Specialized solver and implementation reference for the traveling salesperson problem.",
+    tags: ["TSP", "routing"],
   },
   {
     title: "VRP-REP",
