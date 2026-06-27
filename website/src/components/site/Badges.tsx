@@ -2,10 +2,10 @@ import { cn } from "@/lib/utils";
 import type { Difficulty, TopicType } from "@/data/topics";
 
 const diffStyles: Record<Difficulty, string> = {
-  Foundations: "bg-emerald-500/10 text-emerald-400 ring-emerald-500/30",
-  Intermediate: "bg-sky-500/10 text-sky-400 ring-sky-500/30",
-  Advanced: "bg-violet-500/10 text-violet-400 ring-violet-500/30",
-  Applied: "bg-amber-500/10 text-amber-400 ring-amber-500/30",
+  Foundations: "bg-emerald-500/10 text-emerald-700 ring-emerald-500/30 dark:text-emerald-300",
+  Intermediate: "bg-sky-500/10 text-sky-700 ring-sky-500/30 dark:text-sky-300",
+  Advanced: "bg-violet-500/10 text-violet-700 ring-violet-500/30 dark:text-violet-300",
+  Applied: "bg-teal-500/10 text-teal-700 ring-teal-500/30 dark:text-teal-300",
 };
 
 export function DifficultyBadge({ value, className }: { value: Difficulty; className?: string }) {
