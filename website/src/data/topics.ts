@@ -352,6 +352,10 @@ export const topics: Topic[] = [
         url: "https://neos-guide.org/guide/types/nonlinear-programming/",
       },
       {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+      },
+      {
         title: "Numerical Optimization — Nocedal & Wright",
         url: "https://link.springer.com/book/10.1007/978-0-387-40065-5",
       },
@@ -436,6 +440,10 @@ export const topics: Topic[] = [
       {
         title: "MOSEK Modeling Cookbook",
         url: "https://docs.mosek.com/modeling-cookbook/index.html",
+      },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
       },
       {
         title: "Convex Optimization — Boyd & Vandenberghe",
@@ -625,6 +633,10 @@ export const topics: Topic[] = [
         url: "https://neos-guide.org/content/quadratic-programming",
       },
       {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+      },
+      {
         title: "VMLS — Boyd & Vandenberghe",
         url: "https://vmls-book.stanford.edu/",
       },
@@ -659,6 +671,10 @@ export const topics: Topic[] = [
       {
         title: "MOSEK Modeling Cookbook",
         url: "https://docs.mosek.com/modeling-cookbook/index.html",
+      },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
       },
       {
         title: "Convex Optimization — Boyd & Vandenberghe",
@@ -1114,6 +1130,7 @@ export const topics: Topic[] = [
     type: "Application",
     resources: [
       { title: "OR-Tools Routing", url: "https://developers.google.com/optimization/routing" },
+      { title: "NVIDIA cuOpt", url: "https://github.com/NVIDIA/cuopt" },
       { title: "VRP-REP", url: "http://www.vrp-rep.org/" },
     ],
     next: ["transportation-logistics", "metaheuristics"],
@@ -1515,17 +1532,19 @@ export const topics: Topic[] = [
     title: "Software Tools & Solvers",
     short: "Modeling languages, libraries, and solvers.",
     description:
-      "From AMPL and Pyomo to JuMP, Gurobi, CPLEX, HiGHS, and OR-Tools — the practical stack that makes OR usable.",
+      "From AMPL and Pyomo to JuMP, Gurobi, CPLEX, HiGHS, OR-Tools, and GPU-accelerated tools such as NVIDIA cuOpt — the practical stack that makes OR usable.",
     concepts: [
       "Modeling languages",
       "Python/Julia/R libraries",
       "Commercial solvers",
       "Open-source solvers",
+      "GPU-accelerated solvers",
     ],
     difficulty: "Applied",
     type: "Software",
     resources: [
       { title: "Google OR-Tools", url: "https://developers.google.com/optimization" },
+      { title: "NVIDIA cuOpt", url: "https://github.com/NVIDIA/cuopt" },
       { title: "Pyomo", url: "https://www.pyomo.org/" },
       { title: "JuMP", url: "https://jump.dev/JuMP.jl/stable/" },
       { title: "HiGHS", url: "https://highs.dev/" },
@@ -1612,8 +1631,15 @@ export const topics: Topic[] = [
     title: "Solver Engineering & Deployment",
     short: "Turn models into reliable production decision services.",
     description:
-      "Production OR needs data validation, warm starts, decomposition, service APIs, infeasibility handling, observability, latency budgets, and fallback policies.",
-    concepts: ["Model APIs", "Warm starts", "Infeasibility diagnosis", "Monitoring", "Fallbacks"],
+      "Production OR needs data validation, warm starts, decomposition, service APIs, GPU acceleration when it fits the model, infeasibility handling, observability, latency budgets, and fallback policies.",
+    concepts: [
+      "Model APIs",
+      "Warm starts",
+      "GPU acceleration",
+      "Infeasibility diagnosis",
+      "Monitoring",
+      "Fallbacks",
+    ],
     applications: ["Dispatch", "Pricing", "Inventory", "Ad allocation"],
     difficulty: "Applied",
     type: "Software",
@@ -1621,6 +1647,10 @@ export const topics: Topic[] = [
       {
         title: "Gurobi Guidelines for Numerical Issues",
         url: "https://docs.gurobi.com/projects/optimizer/en/current/concepts/numericguide.html",
+      },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
       },
       { title: "Pyomo", url: "https://www.pyomo.org/" },
     ],

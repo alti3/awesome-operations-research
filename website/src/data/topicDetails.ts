@@ -494,6 +494,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         url: "https://pyomo.readthedocs.io/",
         note: "Python algebraic modeling documentation for optimization and production modeling workflows.",
       },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+        note: "GPU-accelerated solver documentation for LP, QP, routing, and beta MILP, QCQP, and SOCP workflows.",
+      },
     ],
   },
   "linear-programming": {
@@ -559,6 +564,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         url: "https://pyomo.readthedocs.io/",
         note: "Python algebraic modeling documentation for optimization and production modeling workflows.",
       },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+        note: "GPU-accelerated LP/PDLP documentation for large-scale linear optimization workflows.",
+      },
     ],
   },
   "integer-programming": {
@@ -622,6 +632,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         url: "https://developers.google.com/optimization",
         note: "Practical toolkit for routing, assignment, CP-SAT, scheduling, flows, LP, and MIP.",
       },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+        note: "cuOpt documents beta MILP support focused on fast, high-quality feasible solutions with GPU-accelerated primal heuristics.",
+      },
     ],
   },
   "nonlinear-optimization": {
@@ -676,6 +691,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "NLopt",
         url: "https://nlopt.readthedocs.io/",
         note: "Topic-specific source curated for Nonlinear Optimization.",
+      },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+        note: "GPU-accelerated solver documentation covering LP, QP, VRP, and beta MILP, QCQP, and SOCP support.",
       },
       {
         title: "NEOS Guide",
@@ -868,6 +888,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "JuMP Documentation",
         url: "https://jump.dev/JuMP.jl/stable/",
         note: "Julia modeling language documentation for linear, integer, conic, and nonlinear optimization.",
+      },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+        note: "cuOpt documents beta SOCP support alongside LP, QP, VRP, MILP, and QCQP capabilities.",
       },
     ],
   },
@@ -1353,6 +1378,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         url: "https://www.cvxgrp.org/cvx_short_course/",
         note: "Hands-on examples for disciplined convex modeling in Python.",
       },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+        note: "cuOpt supports QP in its GPU-accelerated optimization stack.",
+      },
     ],
   },
   "quadratically-constrained-quadratic-programming": {
@@ -1411,6 +1441,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "SCIP Optimization Suite",
         url: "https://www.scipopt.org/",
         note: "Open-source solver suite for MIP, MINLP, and nonconvex quadratic optimization workflows.",
+      },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+        note: "cuOpt includes beta QCQP support and is useful to track for GPU-accelerated quadratic optimization.",
       },
     ],
   },
@@ -2269,6 +2304,16 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "OR-Tools Routing",
         url: "https://developers.google.com/optimization/routing",
         note: "Topic-specific source curated for Vehicle Routing.",
+      },
+      {
+        title: "NVIDIA cuOpt",
+        url: "https://github.com/NVIDIA/cuopt",
+        note: "Open-source CUDA GPU-accelerated solver with Python and server support for routing problems such as TSP, VRP, and pickup-delivery.",
+      },
+      {
+        title: "Exploring NVIDIA cuOpt — Marvik",
+        url: "https://www.marvik.ai/blog/exploring-nvidia-cuopt",
+        note: "Applied vehicle-routing walkthrough comparing cuOpt usage with hand-modeled Pyomo examples.",
       },
       {
         title: "VRP-REP",
@@ -3366,7 +3411,7 @@ export const topicDetails: Record<string, TopicDetail> = {
   "software-solvers": {
     overview: [
       "Software tools and solvers are the production layer of OR. Modeling languages express decisions and constraints; solvers search for feasible, optimal, or high-quality solutions; deployment code turns those solutions into repeatable decisions.",
-      "Tool choice should follow model structure, licensing, scale, latency, explainability, and integration needs rather than popularity alone.",
+      "Tool choice should follow model structure, licensing, scale, latency, explainability, hardware fit, and integration needs rather than popularity alone. GPU-accelerated options such as NVIDIA cuOpt matter when LP, routing, QP, or supported beta model classes need fast large-scale solves.",
     ],
     conceptNotes: {
       "Modeling languages":
@@ -3377,6 +3422,8 @@ export const topicDetails: Record<string, TopicDetail> = {
         "Commercial solvers is a core checkpoint for Software Tools & Solvers: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
       "Open-source solvers":
         "Open-source solvers is a core checkpoint for Software Tools & Solvers: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
+      "GPU-accelerated solvers":
+        "GPU-accelerated solvers such as NVIDIA cuOpt exploit parallel hardware for large LP, routing, QP, and selected beta MIP/QCQP/SOCP workflows.",
     },
     workflow: [
       "Start with a concrete case from the surrounding OR area: write the decision, time horizon, actors, and objective in operational language.",
@@ -3399,6 +3446,21 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "Google OR-Tools",
         url: "https://developers.google.com/optimization",
         note: "Topic-specific source curated for Software Tools & Solvers.",
+      },
+      {
+        title: "NVIDIA cuOpt",
+        url: "https://github.com/NVIDIA/cuopt",
+        note: "Open-source CUDA GPU-accelerated decision optimization engine for LP/PDLP, VRP, QP, and beta MILP, QCQP, and SOCP.",
+      },
+      {
+        title: "NVIDIA cuOpt Product Page",
+        url: "https://www.nvidia.com/en-us/ai-data-science/products/cuopt/",
+        note: "Official overview of cuOpt capabilities, integrations, deployment options, and use cases.",
+      },
+      {
+        title: "NVIDIA Open-Sources cuOpt",
+        url: "https://blogs.nvidia.com/blog/cuopt-open-source/",
+        note: "Announcement and context for cuOpt as open-source GPU-accelerated optimization software.",
       },
       {
         title: "Pyomo",
@@ -3653,14 +3715,16 @@ export const topicDetails: Record<string, TopicDetail> = {
   },
   "solver-engineering": {
     overview: [
-      "Solver Engineering & Deployment focuses on turn models into reliable production decision services. In the map of OR, it connects Model APIs, Warm starts, Infeasibility diagnosis to decisions that must be modeled, solved, explained, and revised as evidence changes.",
-      "Production OR needs data validation, warm starts, decomposition, service APIs, infeasibility handling, observability, latency budgets, and fallback policies. The practical use case is clearest in Dispatch, Pricing, Inventory, Ad allocation, where the method helps turn constraints and tradeoffs into a decision artifact someone can inspect.",
+      "Solver Engineering & Deployment focuses on turning models into reliable production decision services. In the map of OR, it connects model APIs, warm starts, GPU acceleration, infeasibility diagnosis, monitoring, and fallback policies.",
+      "Production OR needs data validation, decomposition, service APIs, hardware-aware solver selection, observability, latency budgets, and fallback behavior. GPU-accelerated solvers such as NVIDIA cuOpt can be valuable for large or latency-sensitive routing, LP, QP, and supported beta optimization workflows.",
     ],
     conceptNotes: {
       "Model APIs":
         "Expose optimization as a reliable service with typed inputs, diagnostics, and controlled outputs.",
       "Warm starts":
         "Warm starts is a core checkpoint for Solver Engineering & Deployment: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
+      "GPU acceleration":
+        "GPU acceleration is useful when solver kernels or heuristics can exploit massive parallelism, but it still needs model-structure checks, deployment planning, and fallback behavior.",
       "Infeasibility diagnosis":
         "Infeasibility diagnosis is a core checkpoint for Solver Engineering & Deployment: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
       Monitoring:
@@ -3692,6 +3756,16 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "Gurobi Guidelines for Numerical Issues",
         url: "https://docs.gurobi.com/projects/optimizer/en/current/concepts/numericguide.html",
         note: "Topic-specific source curated for Solver Engineering & Deployment.",
+      },
+      {
+        title: "NVIDIA cuOpt Documentation",
+        url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+        note: "Developer documentation for cuOpt APIs, supported model classes, and deployment modes.",
+      },
+      {
+        title: "NVIDIA cuOpt Examples",
+        url: "https://github.com/NVIDIA/cuopt-examples",
+        note: "Examples for cuOpt service APIs, SDK workflows, and integrations with other optimization packages.",
       },
       {
         title: "Pyomo",

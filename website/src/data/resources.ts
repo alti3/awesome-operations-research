@@ -363,6 +363,15 @@ export const resources: Resource[] = [
     tags: ["CP-SAT", "VRP"],
   },
   {
+    title: "NVIDIA cuOpt Python/API",
+    url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
+    category: "Python Libraries",
+    type: "Tool",
+    description:
+      "GPU-accelerated optimization APIs for routing, LP, QP, and beta MILP/QCQP/SOCP workflows.",
+    tags: ["GPU", "VRP", "LP", "QP", "MIP", "QCQP", "SOCP"],
+  },
+  {
     title: "OpenSolver",
     url: "https://opensolver.org/",
     category: "Modeling Languages",
@@ -660,6 +669,15 @@ export const resources: Resource[] = [
     category: "Open-Source Solvers",
     type: "Solver",
     description: "High-performance open-source LP, MIP, QP solver.",
+  },
+  {
+    title: "NVIDIA cuOpt",
+    url: "https://github.com/NVIDIA/cuopt",
+    category: "Open-Source Solvers",
+    type: "Solver",
+    description:
+      "Open-source CUDA GPU-accelerated decision optimization engine for LP/PDLP, VRP, QP, and beta MILP, QCQP, and SOCP.",
+    tags: ["GPU", "CUDA", "VRP", "LP", "QP", "MIP", "QCQP", "SOCP"],
   },
   {
     title: "SCIP",
@@ -1111,6 +1129,42 @@ export const resources: Resource[] = [
     category: "Blogs & Online Resources",
     type: "Community",
     description: "Online optimization solver service.",
+  },
+  {
+    title: "NVIDIA cuOpt Product Page",
+    url: "https://www.nvidia.com/en-us/ai-data-science/products/cuopt/",
+    category: "Blogs & Online Resources",
+    type: "Tool",
+    description:
+      "Official overview of NVIDIA cuOpt, supported model classes, deployment options, integrations, and use cases.",
+    tags: ["cuOpt", "GPU", "decision optimization"],
+  },
+  {
+    title: "NVIDIA cuOpt Examples",
+    url: "https://github.com/NVIDIA/cuopt-examples",
+    category: "Blogs & Online Resources",
+    type: "Tool",
+    description:
+      "Example repository for cuOpt service APIs, SDK use, and integration with open-source optimization packages.",
+    tags: ["cuOpt", "examples", "API"],
+  },
+  {
+    title: "NVIDIA Open-Sources cuOpt",
+    url: "https://blogs.nvidia.com/blog/cuopt-open-source/",
+    category: "Blogs & Online Resources",
+    type: "Community",
+    description:
+      "NVIDIA announcement and context for cuOpt as an open-source GPU-accelerated optimization engine.",
+    tags: ["cuOpt", "open source", "GPU"],
+  },
+  {
+    title: "Exploring NVIDIA cuOpt — Marvik",
+    url: "https://www.marvik.ai/blog/exploring-nvidia-cuopt",
+    category: "Blogs & Online Resources",
+    type: "Community",
+    description:
+      "Applied walkthrough of cuOpt for vehicle routing, including a comparison with hand-modeled Pyomo examples.",
+    tags: ["cuOpt", "VRP", "routing"],
   },
   {
     title: "Optimization Online",
