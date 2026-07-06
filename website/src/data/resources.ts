@@ -363,6 +363,14 @@ export const resources: Resource[] = [
     tags: ["CP-SAT", "VRP"],
   },
   {
+    title: "OR-Tools Linear Solver / GLOP",
+    url: "https://developers.google.com/optimization/lp",
+    category: "Python Libraries",
+    type: "Tool",
+    description: "Google OR-Tools interface for linear programming, including the GLOP LP solver.",
+    tags: ["LP", "GLOP"],
+  },
+  {
     title: "NVIDIA cuOpt Python/API",
     url: "https://docs.nvidia.com/cuopt/user-guide/latest/introduction.html",
     category: "Python Libraries",
@@ -727,6 +735,14 @@ export const resources: Resource[] = [
     category: "Open-Source Solvers",
     type: "Solver",
     description: "GNU Linear Programming Kit.",
+  },
+  {
+    title: "GLOP",
+    url: "https://developers.google.com/optimization/lp",
+    category: "Open-Source Solvers",
+    type: "Solver",
+    description: "Google OR-Tools linear programming solver for LP models.",
+    tags: ["LP", "OR-Tools"],
   },
   {
     title: "ECOS",
@@ -1165,6 +1181,15 @@ export const resources: Resource[] = [
     description:
       "Applied walkthrough of cuOpt for vehicle routing, including a comparison with hand-modeled Pyomo examples.",
     tags: ["cuOpt", "VRP", "routing"],
+  },
+  {
+    title: "Intro to Mixed-Integer Linear Programming — Marvik",
+    url: "https://www.marvik.ai/blog/linear-programming",
+    category: "Blogs & Online Resources",
+    type: "Community",
+    description:
+      "Practical MILP tutorial contrasting optimization with ML, then modeling a retail product-allocation problem in Pyomo.",
+    tags: ["MILP", "LP", "Pyomo", "product allocation", "retail"],
   },
   {
     title: "Optimization Online",

@@ -504,7 +504,7 @@ export const topicDetails: Record<string, TopicDetail> = {
   "linear-programming": {
     overview: [
       "Linear programming is the workhorse model for allocating scarce resources when objectives and constraints can be expressed linearly. It appears in blending, transportation, diet, workforce, portfolio, and production-planning models.",
-      "LP is not just a solver input format. Its dual variables, reduced costs, and sensitivity ranges make it one of the clearest tools for explaining marginal value and operational bottlenecks.",
+      "LP is not just a solver input format. Its feasible region, boundedness, dual variables, reduced costs, and sensitivity ranges make it one of the clearest tools for explaining marginal value and operational bottlenecks.",
     ],
     conceptNotes: {
       Simplex:
@@ -513,6 +513,10 @@ export const topicDetails: Record<string, TopicDetail> = {
         "Solves large continuous relaxations through barrier methods and is often strong for huge sparse LPs and conic models.",
       Duality:
         "Turns constraints into prices, bounds, and diagnostic signals about which limits matter most.",
+      "Feasible region":
+        "The feasible region is the set of all decision-variable values satisfying every equality, inequality, nonnegativity, and policy constraint.",
+      Boundedness:
+        "A bounded feasible region limits the objective; unbounded models often signal a missing capacity, demand, or policy constraint.",
       "Shadow prices":
         "Interpret the marginal value of scarce capacity only inside the validity range of the model.",
       "Reduced costs":
@@ -531,9 +535,12 @@ export const topicDetails: Record<string, TopicDetail> = {
       "Diet: compare feasible policies, quantify the operating tradeoffs, and make the assumptions behind the recommendation visible.",
       "Transportation: compare feasible policies, quantify the operating tradeoffs, and make the assumptions behind the recommendation visible.",
       "Portfolio: compare feasible policies, quantify the operating tradeoffs, and make the assumptions behind the recommendation visible.",
+      "Product allocation: choose which products occupy limited shelf, warehouse, or ad inventory space when revenue, capacity, and placement rules can be linearized.",
     ],
     pitfalls: [
       "Using linearity when economies of scale, fixed charges, or logical choices require integer variables.",
+      "Missing a constraint and producing an unbounded model instead of a real operational plan.",
+      "Confusing infeasibility with a bad solver result when the real issue is contradictory business rules.",
       "Interpreting shadow prices outside their valid range.",
       "Mixing units across constraints and silently distorting costs.",
       "Ignoring degeneracy or alternate optima when the business needs a robust plan.",
@@ -555,6 +562,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         note: "Topic-specific source curated for Linear Programming.",
       },
       {
+        title: "Intro to Mixed-Integer Linear Programming — Marvik",
+        url: "https://www.marvik.ai/blog/linear-programming",
+        note: "Applied tutorial covering LP/MILP vocabulary, feasible regions, product allocation, Pyomo implementation, and open-source solvers.",
+      },
+      {
         title: "NEOS Guide",
         url: "https://neos-guide.org/guide/",
         note: "Authoritative optimization guide covering model classes, algorithms, and solver selection.",
@@ -574,11 +586,13 @@ export const topicDetails: Record<string, TopicDetail> = {
   "integer-programming": {
     overview: [
       "Integer and mixed-integer programming model discrete choices: open a depot, assign a crew, select a project, start a machine, or include an arc in a route. The integrality is what makes the recommendation operationally executable.",
-      "The craft is formulation. A tight formulation, good bounds, and valid cuts can beat a weak model even when both describe the same business problem.",
+      "MILP is especially useful when data is limited but business rules are well understood: experts can encode those rules directly as sets, parameters, variables, linear constraints, and an objective. The craft is formulation. A tight formulation, good bounds, and valid cuts can beat a weak model even when both describe the same business problem.",
     ],
     conceptNotes: {
       "Binary variables":
         "Represent yes/no structure such as facility opening, assignment, route activation, and logical implications.",
+      "Sets and parameters":
+        "Sets index repeated entities such as products, shelves, workers, tasks, or authors; parameters hold fixed inputs such as prices, sizes, capacities, availability, and visibility factors.",
       "Branch & bound":
         "Searches discrete choices while pruning regions whose bound cannot beat the incumbent solution.",
       "Branch & cut": "Adds valid inequalities during the search to tighten weak relaxations.",
@@ -586,23 +600,29 @@ export const topicDetails: Record<string, TopicDetail> = {
         "Branch & price is a core checkpoint for Integer & Mixed-Integer Programming: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
       "Formulation strength":
         "A strong formulation closes the relaxation gap and can matter more than switching solvers.",
+      Linearization:
+        "Linearization approximates or reformulates nonlinear relationships over a relevant interval so MILP tools can be used, usually trading exactness for tractability.",
     },
     workflow: [
-      "Start with Facility location: write the decision, time horizon, actors, and objective in operational language.",
-      "Translate the problem into Binary variables, Branch & bound, and Branch & cut; define units and data sources for each one.",
-      "Build a small instance of Integer & Mixed-Integer Programming that can be solved or simulated by hand inspection before using full production data.",
+      "Start with the operational decision: write the entities, time horizon, objective, and business rules in plain language.",
+      "Define sets, parameters, binary/integer/continuous variables, constraints, and objective before choosing a solver.",
+      "Build a small instance in a modeling tool such as Pyomo and solve it with GLPK, GLOP, CP-SAT, SCIP, or another solver that matches the model.",
       "Compare the recommendation against a baseline policy, not just against mathematical optimality.",
       "Document assumptions, sensitivity results, and the conditions under which the recommendation should be revisited.",
     ],
     applicationNotes: [
       "Facility location: compare feasible policies, quantify the operating tradeoffs, and make the assumptions behind the recommendation visible.",
+      "Product allocation: assign products to shelves, bookcases, ads, slots, or displays while respecting capacity, fit, grouping, and revenue rules.",
       "Vehicle routing: compare feasible policies, quantify the operating tradeoffs, and make the assumptions behind the recommendation visible.",
       "Crew scheduling: compare feasible policies, quantify the operating tradeoffs, and make the assumptions behind the recommendation visible.",
       "Unit commitment: compare feasible policies, quantify the operating tradeoffs, and make the assumptions behind the recommendation visible.",
+      "Cash flow optimization: choose financial instruments, timing, or allocations under capital, risk, and policy constraints.",
     ],
     pitfalls: [
-      "Applying Integer & Mixed-Integer Programming because the label sounds appropriate while leaving the actual decision boundary vague.",
-      "Treating Binary variables as a technical detail instead of a modeling choice that affects the recommendation.",
+      "Using MILP when the real rules are unknown and must first be learned from data.",
+      "Leaving business rules only in prose instead of translating them into auditable constraints.",
+      "Treating binary variables as a technical detail instead of a modeling choice that affects the recommendation.",
+      "Linearizing nonlinear behavior without checking whether the approximation is accurate enough over the operating range.",
       "Reporting one answer without showing sensitivity to demand, capacity, costs, or behavioral assumptions.",
       "Ignoring implementation details such as data quality, explainability, ownership, and how users will override bad recommendations.",
     ],
@@ -621,6 +641,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "MIPLIB",
         url: "https://miplib.zib.de/",
         note: "Topic-specific source curated for Integer & Mixed-Integer Programming.",
+      },
+      {
+        title: "Intro to Mixed-Integer Linear Programming — Marvik",
+        url: "https://www.marvik.ai/blog/linear-programming",
+        note: "Practical MILP walkthrough contrasting optimization with ML and modeling a retail product-allocation problem in Pyomo.",
       },
       {
         title: "SCIP Optimization Suite",
@@ -3368,7 +3393,7 @@ export const topicDetails: Record<string, TopicDetail> = {
       Energy:
         "Energy is a core checkpoint for OR in Industry: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
       Retail:
-        "Retail is a core checkpoint for OR in Industry: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
+        "Retail OR includes product allocation, shelf-space optimization, assortment, pricing, replenishment, routing, and staffing decisions.",
       Finance:
         "Finance is a core checkpoint for OR in Industry: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
       "Public sector":
@@ -3382,7 +3407,10 @@ export const topicDetails: Record<string, TopicDetail> = {
       "Document assumptions, sensitivity results, and the conditions under which the recommendation should be revisited.",
     ],
     applicationNotes: [
-      "Use this topic as a building block in nearby OR models; connect it to a concrete decision before treating it as a standalone application area.",
+      "Retail: allocate products to limited shelf or display space using price, demand, visibility, dimensions, and grouping rules.",
+      "Finance: optimize cash flow, portfolio choices, or capital allocation under return, risk, and timing constraints.",
+      "Manufacturing: allocate workers, materials, and production capacity to maximize profit or minimize cost.",
+      "Logistics: plan routes, transportation networks, and distribution policies under capacity and service constraints.",
     ],
     pitfalls: [
       "Applying OR in Industry because the label sounds appropriate while leaving the actual decision boundary vague.",
@@ -3405,6 +3433,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "Google OR-Tools",
         url: "https://developers.google.com/optimization",
         note: "Practical toolkit for routing, assignment, CP-SAT, scheduling, flows, LP, and MIP.",
+      },
+      {
+        title: "Intro to Mixed-Integer Linear Programming — Marvik",
+        url: "https://www.marvik.ai/blog/linear-programming",
+        note: "Applied retail/product-allocation example showing how to turn business rules into a MILP.",
       },
     ],
   },
@@ -3466,6 +3499,16 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "Pyomo",
         url: "https://www.pyomo.org/",
         note: "Topic-specific source curated for Software Tools & Solvers.",
+      },
+      {
+        title: "GLPK",
+        url: "https://www.gnu.org/software/glpk/",
+        note: "Open-source LP/MIP solver used in many teaching and prototyping workflows.",
+      },
+      {
+        title: "OR-Tools Linear Solver / GLOP",
+        url: "https://developers.google.com/optimization/lp",
+        note: "Google OR-Tools interface for LP models and the GLOP linear programming solver.",
       },
       {
         title: "JuMP",
