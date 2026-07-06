@@ -95,8 +95,8 @@ export const paths: LearningPath[] = [
         related: [{ label: "Boyd & Vandenberghe", url: "https://web.stanford.edu/~boyd/cvxbook/" }],
       },
       {
-        title: "Nonlinear Programming",
-        description: "Gradient, Newton, SQP, interior point.",
+        title: "Nonlinear Programming (NLP)",
+        description: "QP, QCQP, SOCP, smooth NLP, SQP, interior point, and global optimization.",
         difficulty: "Advanced",
       },
       {

@@ -626,10 +626,15 @@ export const topicDetails: Record<string, TopicDetail> = {
   },
   "nonlinear-optimization": {
     overview: [
-      "Nonlinear Optimization focuses on when objectives or constraints stop being linear. In the map of OR, it connects Gradient methods, Newton / quasi-Newton, SQP to decisions that must be modeled, solved, explained, and revised as evidence changes.",
-      "Engineering design, energy, pricing, and ML pose nonlinear models. Gradient, Newton, SQP, interior-point, and derivative-free methods each have their niche. The practical use case is clearest in adjacent OR applications, where the method helps turn constraints and tradeoffs into a decision artifact someone can inspect.",
+      "Nonlinear Programming (NLP) covers optimization models where an objective or constraint is not purely linear. It includes smooth continuous NLP, quadratic programming, quadratically constrained quadratic programming, second-order cone programming, and nonconvex global optimization cases.",
+      "Engineering design, energy, pricing, control, finance, and machine learning all pose nonlinear models. The first practical split is convex versus nonconvex: convex NLP classes such as QP, convex QCQP, and SOCP support reliable global solutions, while nonconvex NLP requires local methods, global optimization, or careful relaxation.",
     ],
     conceptNotes: {
+      "Quadratic Programming (QP)":
+        "QP keeps the constraints linear while allowing a quadratic objective, making it a common first nonlinear extension of LP.",
+      QCQP:
+        "QCQP allows quadratic constraints as well as a quadratic objective; convex cases can be tractable, while nonconvex cases often need relaxations or global methods.",
+      SOCP: "SOCP is a convex NLP class that represents norm bounds and many convex quadratic constraints through second-order cones.",
       "Gradient methods":
         "Gradient methods is a core checkpoint for Nonlinear Optimization: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
       "Newton / quasi-Newton":
@@ -641,9 +646,9 @@ export const topicDetails: Record<string, TopicDetail> = {
         "Global optimization is a core checkpoint for Nonlinear Optimization: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
     },
     workflow: [
-      "Start with a concrete case from the surrounding OR area: write the decision, time horizon, actors, and objective in operational language.",
-      "Translate the problem into Gradient methods, Newton / quasi-Newton, and SQP; define units and data sources for each one.",
-      "Build a small instance of Nonlinear Optimization that can be solved or simulated by hand inspection before using full production data.",
+      "Write the nonlinear objective and every nonlinear constraint explicitly, including units and domains.",
+      "Classify the model as QP, QCQP, SOCP, general convex NLP, smooth nonconvex NLP, or MINLP before selecting a solver.",
+      "Check convexity, differentiability, scaling, bounds, and constraint qualifications on a small instance.",
       "Compare the recommendation against a baseline policy, not just against mathematical optimality.",
       "Document assumptions, sensitivity results, and the conditions under which the recommendation should be revisited.",
     ],
@@ -651,8 +656,8 @@ export const topicDetails: Record<string, TopicDetail> = {
       "Use this topic as a building block in nearby OR models; connect it to a concrete decision before treating it as a standalone application area.",
     ],
     pitfalls: [
-      "Applying Nonlinear Optimization because the label sounds appropriate while leaving the actual decision boundary vague.",
-      "Treating Gradient methods as a technical detail instead of a modeling choice that affects the recommendation.",
+      "Calling a model NLP without separating convex QP/QCQP/SOCP cases from nonconvex local-search cases.",
+      "Treating gradients, scaling, and bounds as solver details instead of modeling choices that affect the recommendation.",
       "Reporting one answer without showing sensitivity to demand, capacity, costs, or behavioral assumptions.",
       "Ignoring implementation details such as data quality, explainability, ownership, and how users will override bad recommendations.",
     ],
@@ -807,23 +812,27 @@ export const topicDetails: Record<string, TopicDetail> = {
   },
   "conic-semidefinite-optimization": {
     overview: [
-      "Conic & Semidefinite Optimization focuses on lP, SOCP, and SDP as one convex modeling family. In the map of OR, it connects SOCP, SDP, Dual cones to decisions that must be modeled, solved, explained, and revised as evidence changes.",
-      "Conic optimization generalizes linear programming through cones such as nonnegative orthants, second-order cones, and positive semidefinite matrices. The practical use case is clearest in Portfolio, Control, Power systems, Robust optimization, where the method helps turn constraints and tradeoffs into a decision artifact someone can inspect.",
+      "Second-Order Cone Programming (SOCP) is a convex nonlinear optimization class built around affine constraints and second-order cone constraints. It captures norm bounds, many convex quadratic constraints, and robust linear constraints in a solver-friendly form.",
+      "SOCP sits inside conic optimization, alongside LP and SDP. It is especially useful in portfolio risk, control, power systems, robust optimization, and engineering models where convex quadratic structure should be preserved rather than treated as a general nonlinear program.",
     ],
     conceptNotes: {
-      SOCP: "SOCP is a core checkpoint for Conic & Semidefinite Optimization: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
-      SDP: "SDP is a core checkpoint for Conic & Semidefinite Optimization: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
+      "Second-order cones":
+        "Second-order cones represent constraints of the form a norm bounded by an affine expression, which covers many convex quadratic relationships.",
+      "Conic programming":
+        "Conic programming expresses feasibility through cone membership, giving a common language for LP, SOCP, and SDP.",
+      "Convex quadratic constraints":
+        "Many convex quadratic constraints can be written as second-order cone constraints, making them easier to solve reliably.",
       "Dual cones":
-        "Dual cones is a core checkpoint for Conic & Semidefinite Optimization: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
+        "Dual cones support certificates, sensitivity analysis, and robust counterparts in conic models.",
       "Interior-point methods":
-        "Interior-point methods is a core checkpoint for Conic & Semidefinite Optimization: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
-      Relaxations:
-        "Relaxations is a core checkpoint for Conic & Semidefinite Optimization: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
+        "Interior-point methods are the standard high-accuracy approach for many SOCP and broader conic models.",
+      "SDP relaxations":
+        "Semidefinite relaxations can bound harder quadratic models, especially when QCQP structure is nonconvex.",
     },
     workflow: [
       "Start with Portfolio: write the decision, time horizon, actors, and objective in operational language.",
-      "Translate the problem into SOCP, SDP, and Dual cones; define units and data sources for each one.",
-      "Build a small instance of Conic & Semidefinite Optimization that can be solved or simulated by hand inspection before using full production data.",
+      "Identify norm bounds, robust linear constraints, and convex quadratic constraints that can be represented as second-order cones.",
+      "Build a small SOCP instance and verify the conic form before using full production data.",
       "Compare the recommendation against a baseline policy, not just against mathematical optimality.",
       "Document assumptions, sensitivity results, and the conditions under which the recommendation should be revisited.",
     ],
@@ -834,8 +843,8 @@ export const topicDetails: Record<string, TopicDetail> = {
       "Robust optimization: compare feasible policies, quantify the operating tradeoffs, and make the assumptions behind the recommendation visible.",
     ],
     pitfalls: [
-      "Applying Conic & Semidefinite Optimization because the label sounds appropriate while leaving the actual decision boundary vague.",
-      "Treating SOCP as a technical detail instead of a modeling choice that affects the recommendation.",
+      "Treating every quadratic constraint as SOCP-representable without checking convexity and cone form.",
+      "Hiding a simple LP or QP inside unnecessary conic notation.",
       "Reporting one answer without showing sensitivity to demand, capacity, costs, or behavioral assumptions.",
       "Ignoring implementation details such as data quality, explainability, ownership, and how users will override bad recommendations.",
     ],
@@ -1278,25 +1287,30 @@ export const topicDetails: Record<string, TopicDetail> = {
   },
   "least-squares-quadratic-optimization": {
     overview: [
-      "Least Squares, QP & Piecewise-Linear Models focuses on optimization workhorses between linear models and full nonlinear programs. In the map of OR, it connects Least squares, Quadratic programming, Piecewise-linear models to decisions that must be modeled, solved, explained, and revised as evidence changes.",
-      "Least squares, quadratic programming, separable convex functions, and piecewise-linear models appear in estimation, finance, control, ML, and planning. The practical use case is clearest in Regression, Portfolio, Control, Curve fitting, Resource planning, where the method helps turn constraints and tradeoffs into a decision artifact someone can inspect.",
+      "Quadratic Programming (QP) optimizes a quadratic objective over linear constraints. It is one of the most common nonlinear programming subtopics because it extends LP while preserving strong algorithmic structure in the convex case.",
+      "QP appears in least squares, portfolio optimization, control, curve fitting, machine learning, and resource planning. Convex QP can be solved reliably with active-set, interior-point, or operator-splitting methods; nonconvex QP should be treated as a global optimization problem.",
     ],
     conceptNotes: {
-      "Least squares":
-        "Least squares is a core checkpoint for Least Squares, QP & Piecewise-Linear Models: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
       "Quadratic programming":
-        "Quadratic programming is a core checkpoint for Least Squares, QP & Piecewise-Linear Models: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
+        "QP uses a quadratic objective and linear constraints, making it a structured NLP class between LP and general nonlinear programming.",
+      "Linear constraints":
+        "The feasible region remains polyhedral; the nonlinearity is in the objective rather than the constraints.",
+      "Quadratic objective":
+        "A positive semidefinite quadratic objective gives a convex QP; indefinite objectives create nonconvex QP.",
+      "Least squares":
+        "Least-squares estimation is a canonical unconstrained or constrained QP pattern.",
       "Piecewise-linear models":
         "Piecewise-linear models is a core checkpoint for Least Squares, QP & Piecewise-Linear Models: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
       "Active set methods":
-        "Active set methods is a core checkpoint for Least Squares, QP & Piecewise-Linear Models: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
+        "Active-set methods solve QP by predicting which linear constraints bind at the optimum.",
       "Parametric QP":
-        "Parametric QP is a core checkpoint for Least Squares, QP & Piecewise-Linear Models: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
+        "Parametric QP studies how the solution changes as coefficients or right-hand sides vary, which is important in control and sensitivity analysis.",
     },
     workflow: [
       "Start with Regression: write the decision, time horizon, actors, and objective in operational language.",
-      "Translate the problem into Least squares, Quadratic programming, and Piecewise-linear models; define units and data sources for each one.",
-      "Build a small instance of Least Squares, QP & Piecewise-Linear Models that can be solved or simulated by hand inspection before using full production data.",
+      "Write the quadratic objective matrix, linear term, linear constraints, bounds, and units.",
+      "Check whether the quadratic matrix is positive semidefinite before assuming the QP is convex.",
+      "Build a small QP instance that can be solved or inspected before using full production data.",
       "Compare the recommendation against a baseline policy, not just against mathematical optimality.",
       "Document assumptions, sensitivity results, and the conditions under which the recommendation should be revisited.",
     ],
@@ -1308,8 +1322,8 @@ export const topicDetails: Record<string, TopicDetail> = {
       "Resource planning: compare feasible policies, quantify the operating tradeoffs, and make the assumptions behind the recommendation visible.",
     ],
     pitfalls: [
-      "Applying Least Squares, QP & Piecewise-Linear Models because the label sounds appropriate while leaving the actual decision boundary vague.",
-      "Treating Least squares as a technical detail instead of a modeling choice that affects the recommendation.",
+      "Assuming every QP is convex without checking the quadratic objective matrix.",
+      "Using a general NLP solver when the model has QP structure a dedicated solver can exploit.",
       "Reporting one answer without showing sensitivity to demand, capacity, costs, or behavioral assumptions.",
       "Ignoring implementation details such as data quality, explainability, ownership, and how users will override bad recommendations.",
     ],
@@ -1338,6 +1352,65 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "CVXPY Short Course",
         url: "https://www.cvxgrp.org/cvx_short_course/",
         note: "Hands-on examples for disciplined convex modeling in Python.",
+      },
+    ],
+  },
+  "quadratically-constrained-quadratic-programming": {
+    overview: [
+      "Quadratically Constrained Quadratic Programming (QCQP) extends QP by allowing quadratic constraints as well as a quadratic objective. It is a natural NLP subtopic for models where risk, distance, energy, variance, or norm-like restrictions cannot be expressed linearly.",
+      "The key modeling distinction is convex versus nonconvex QCQP. Convex QCQP can often be solved through conic or interior-point methods, while nonconvex QCQP usually needs semidefinite relaxations, bound tightening, spatial branch-and-bound, or other global optimization machinery.",
+    ],
+    conceptNotes: {
+      "Quadratic constraints":
+        "Quadratic constraints limit feasible decisions using squared, bilinear, norm, variance, or energy-like expressions.",
+      "Convex QCQP":
+        "Convex QCQP has a convex objective and convex feasible set, often making it tractable through conic reformulations or interior-point methods.",
+      "Nonconvex QCQP":
+        "Nonconvex QCQP can have local optima and weak relaxations, so solver results need stronger validation and bounds.",
+      "Semidefinite relaxations":
+        "SDP relaxations lift quadratic terms into matrix variables to produce bounds or approximate solutions for hard QCQP instances.",
+      "Trust-region models":
+        "Trust-region subproblems are a classic QCQP pattern where a quadratic model is optimized inside a norm-bounded region.",
+    },
+    workflow: [
+      "Write each quadratic objective and constraint term explicitly, including matrix symmetry and units.",
+      "Classify every quadratic constraint as convex, concave, or indefinite before choosing a solver.",
+      "Look for SOCP-representable constraints such as norm bounds, then use SDP or global methods for harder nonconvex structure.",
+      "Compare the recommendation against a baseline policy, not just against mathematical optimality.",
+      "Document assumptions, sensitivity results, and the conditions under which the recommendation should be revisited.",
+    ],
+    applicationNotes: [
+      "Portfolio risk: variance and tracking-error limits are natural quadratic constraints.",
+      "Signal processing: beamforming and estimation models often contain quadratic power or norm limits.",
+      "Robust optimization: ellipsoidal uncertainty sets commonly lead to conic or quadratic constraints.",
+      "Power systems: AC power-flow relaxations and engineering limits can produce QCQP structure.",
+    ],
+    pitfalls: [
+      "Treating nonconvex QCQP output as globally optimal without a certificate or bound.",
+      "Missing an SOCP reformulation that would make a convex quadratic constraint easier to solve.",
+      "Letting poorly scaled quadratic terms dominate numerical behavior.",
+      "Reporting one answer without showing sensitivity to demand, capacity, costs, or behavioral assumptions.",
+    ],
+    resources: [
+      {
+        title: "MOSEK Modeling Cookbook",
+        url: "https://docs.mosek.com/modeling-cookbook/index.html",
+        note: "Practical modeling guide for conic, quadratic, semidefinite, and mixed-integer optimization.",
+      },
+      {
+        title: "Convex Optimization — Boyd & Vandenberghe",
+        url: "https://web.stanford.edu/~boyd/cvxbook/",
+        note: "Open textbook covering convex quadratic constraints, conic forms, and duality.",
+      },
+      {
+        title: "QPLIB",
+        url: "https://qplib.zib.de/",
+        note: "Benchmark library for quadratic programming instances, useful for solver comparisons.",
+      },
+      {
+        title: "SCIP Optimization Suite",
+        url: "https://www.scipopt.org/",
+        note: "Open-source solver suite for MIP, MINLP, and nonconvex quadratic optimization workflows.",
       },
     ],
   },
