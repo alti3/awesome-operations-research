@@ -85,6 +85,17 @@ function TopicPage() {
 
           <article className="topic-page space-y-12">
             <TopicSection id="overview" title="Overview">
+              {detail.framing && (
+                <div className="rounded-lg border border-primary/30 bg-primary/5 p-5">
+                  <h3 className="text-sm font-semibold text-primary">{detail.framing.title}</h3>
+                  <p className="mt-3 text-xl font-semibold tracking-tight text-foreground">
+                    {detail.framing.statement}
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    {detail.framing.explanation}
+                  </p>
+                </div>
+              )}
               {detail.overview.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}

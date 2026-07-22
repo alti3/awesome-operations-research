@@ -4,6 +4,11 @@ export type TopicDetailResource = TopicResource & { note?: string };
 
 export type TopicDetail = {
   overview: string[];
+  framing?: {
+    title: string;
+    statement: string;
+    explanation: string;
+  };
   conceptNotes: Record<string, string>;
   workflow: string[];
   applicationNotes: string[];
@@ -1108,6 +1113,12 @@ export const topicDetails: Record<string, TopicDetail> = {
       "Constraint Programming focuses on search and propagation for rich logical constraints. In the map of OR, it connects Domains, Propagation, Global constraints to decisions that must be modeled, solved, explained, and revised as evidence changes.",
       "CP models scheduling, timetabling, routing, packing, and feasibility-heavy problems using domains, global constraints, propagation, and search. The practical use case is clearest in Timetabling, Scheduling, Routing, Packing, where the method helps turn constraints and tradeoffs into a decision artifact someone can inspect.",
     ],
+    framing: {
+      title: "The CP Paradigm in One Sentence",
+      statement: "Constraint Programming = Model + Search.",
+      explanation:
+        "You declare variables (the decisions you want to make) and constraints (the rules they must respect). The solver then searches for assignments that satisfy all constraints, pruning large portions of the search space by propagating the constraints at every step.",
+    },
     conceptNotes: {
       Domains:
         "Domains is a core checkpoint for Constraint Programming: define it concretely, attach units or rules where possible, and test whether stakeholders interpret it the same way.",
@@ -1149,6 +1160,11 @@ export const topicDetails: Record<string, TopicDetail> = {
         title: "MiniZinc Handbook",
         url: "https://www.minizinc.org/doc-latest/en/",
         note: "Topic-specific source curated for Constraint Programming.",
+      },
+      {
+        title: "MaxiCP",
+        url: "https://maxicp.org/",
+        note: "Source of the Constraint Programming paradigm framing used in this guide.",
       },
       {
         title: "Google OR-Tools",
